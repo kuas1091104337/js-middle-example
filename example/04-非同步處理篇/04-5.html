@@ -11,9 +11,7 @@
     <!-- https://www.mocky.io/ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
-        
         console.log('1');
-
         axios.get("./api/data.json")
         .then(function (res) {
             console.log("get:", res);
@@ -25,13 +23,14 @@
         console.log('2');
 
 
-        axios.post("http://www.mocky.io/v2/5cc3f1c43400007800765473",  { userid: "123456789" } )
-        .then(function (res) {
+        axios.post("http://www.mocky.io/v2/5cc3f1c43400007800765473",{
+            userName: 'mike',
+            password: '123456789'
+        }).then(function (res) {
             console.log("post:", res);
-        })
-        .catch(function (error) {
+        }).catch(function (error) {
             console.log(error);
-        })
+        });
 
         console.log('3');
 

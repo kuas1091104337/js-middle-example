@@ -7,16 +7,59 @@
     <title>數字千分位符號</title>
 </head>
 <body>
-
+    <input type="text" id="number">
+    <p id="value"></p>
     <script>
-        
-        function Num(num){
-            
+        // s-2
+        var numData = {numInput:''};
+        function bindVal(obj,key,callback){
+          var val = obj[key];
+          Object.defineProperty(obj,key,{
+            get:function(){
+              return val;
+            },
+            set:function(value){
+              val = value;
+              callback(val);
+            }
+          });
         }
-
-        var n = Num(5241522);
+        bindVal(numData,'numInput',function(data){
+            var newNum = [];
+            String(data).split('').reverse().forEach((el,i) => {
+                if(i%3 === 0) newNum.push(',');
+                newNum.push(el);
+            });
+            newNum.shift();
+            document.getElementById('value').innerText = newNum.reverse().join('');
+        });
+        function numHandle(){
+            numData.numInput = this.value;
+        }
+        document.getElementById('number').addEventListener('keyup',numHandle);
+        // s-1
+        // document.getElementById('number').addEventListener('keyup',numHandle);
+        // function numHandle(){
+        //     var newNum = [],
+        //         numArr = String(this.value).split('').reverse();
+        //     numArr.forEach((el,i) => {
+        //         if(i%3 === 0) newNum.push(',');
+        //         newNum.push(el);
+        //     });
+        //     newNum.shift();
+        //     document.getElementById('value').innerText = newNum.reverse().join('');
+        // }
+        function Num(num){
+            var newNum = [];
+            String(num).split('').reverse().forEach((el,i) => {
+                if(i%3 === 0) newNum.push(',');
+                newNum.push(el);
+            });
+            newNum.shift();
+            return newNum.reverse().join('');
+        }
+        var n = Num(123456789012345678);
         console.log(n);
-        
     </script>
 
 

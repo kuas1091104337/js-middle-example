@@ -10,97 +10,111 @@
 </head>
 <body>
     <div id="app">
-            <!-- seachOk -->
-        <div id="bar" class="">
+        <div id="bar" class=""><!-- seachOk -->
             <input class="seachBar" type="text" placeholder="輸入想找的 instagram 圖片">
         </div>
-
         <div class="imgBox">
             <!-- <div class="imgdiv" style="background-image: url('+imgurl+')"></div> -->
         </div>
-
         <a id="more">More</a>
-      
         <!-- pop照片 -->
         <div class="pop">
             <img class="popImg" src="" alt="">
         </div>
-
         <!-- loading -->
         <div class="loading">
             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
         </div>
     </div>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="./lib/BindValue.js"></script>
     <script>
         window.onload = function(){
-
-            var seachBar = document.getElementsByClassName('seachBar')[0];
-            var moreBtn = document.getElementById('more');
-            var loadingPage = document.getElementsByClassName("loading")[0];
-            var popPage = document.getElementsByClassName("pop")[0];
-
-            var keyword = "";          // 搜尋的文字
-            var edges = null;          // 搜尋出來的照片
-            var baseUrl = "";          // api 的url
-            var img_html = "";         // 圖片列表
-            var Loading = {
-                isOpem: false          // 開啟loading
-            }
-            var pageInfo = {
-                has_next_page: false,  // 是否還有下一頁
-                end_cursor: ""         // 最後一頁的hash
-            }
-            var photoTag = {
-                pages: [],             // 存取目前有的照片
-            }
-            
+            var $more = document.getElementById('more'),
+                $bar = document.getElementById("bar"),
+                $imgBox = document.getElementsByClassName("imgBox")[0],
+                $pop = document.getElementsByClassName("pop")[0];
+            var keyword = '',  // 搜尋的文字
+                edges = null,  // 搜尋出來的照片 照片的資料
+                baseUrl = '',  // api 的url
+                img_html = '',  // 圖片列表
+                Loading = {isOpen:''},  // 開啟loading
+                photoTag = {pages:[]},  // 存取目前有的照片
+                pageInfo = {
+                    has_next_page: false,  // 是否還有下一頁
+                    end_cursor:''         // 最後一頁的hash
+                };
             // https://www.instagram.com/explore/tags/{標籤}/?__a=1&max_id={最後一頁的hash}
             // encodeURI(字串編碼) & decodeURI(轉回字串)
-
             // graphql.hashtag.edge_hashtag_to_media['page_info']; // 所有資料              
             // graphql.hashtag.edge_hashtag_to_media['edges']; //所有照片
-
-
             //鍵盤按下
-            seachBar.addEventListener('keyup', function(e){
-                
+            document.getElementsByClassName('seachBar')[0].addEventListener('keyup', function(e){
+                if(e.keyCode !== 13) return
+                if(this.value.trim() === '') return
+                if(this.value !== keyword) resetData();
+                keyword = this.value;
+                SearchHashTag(this.value);
             })
-
-            //鍵盤按下
-            moreBtn.addEventListener("click", function(){
-                
+            //more按下
+            $more.addEventListener("click", function(){
+                SearchHashTag(keyword);
             })
-
             //開始搜尋圖片
             function SearchHashTag(keyword){
-                
+                Loading.isOpen = true;
+                // var proxy = 'https://cors-anywhere.herokuapp.com/';
+                baseUrl = 'https://www.instagram.com/explore/tags/'+encodeURI(keyword)+'/?__a=1'
+                // proxy+baseUrl
+                if(pageInfo.has_next_page) baseUrl += '&max_id='+pageInfo.end_cursor;
+                axios.get(baseUrl).then(function(res){
+                    // edges存照片
+                    edges = res.data.graphql.hashtag.edge_hashtag_to_media.edges;
+                    pageInfo = res.data.graphql.hashtag.edge_hashtag_to_media.page_info;
+                    photoTag.pages = edges;
+                    Loading.isOpen = false;
+                }).catch(function(error){
+                    Loading.isOpen = false;
+                    alert('ERROR')
+                    console.log(error.response.data);
+                    console.error(error.response.data.msg);
+                });
             }
-
             // 重製資料
             function resetData(){
                 img_html = '';
                 photoTag.pages = [];
-                document.getElementsByClassName("imgBox")[0].innerHTML = '';
-                document.getElementById("bar").classList.remove('seachOk');
-                moreBtn.style.display = 'none';
+                $imgBox.innerHTML = '';
+                $bar.classList.remove('seachOk');
+                $more.classList.remove('opan')
             }
-
+            function popHander(){
+                document.querySelectorAll('.imgdiv').forEach((el) => {
+                  el.addEventListener('click',showPop);
+                });
+            }
+            function showPop(){
+                $pop.classList.add('open');
+                document.getElementsByClassName('popImg')[0].src = this.style.backgroundImage.replace('url("','').replace('")','');
+            }
             //如果資料有變動就重新更新畫面
             BindValue(photoTag, 'pages', function(val){
-                
+                val.forEach(function(item, idx){
+                    img_html += '<div class="imgdiv" style="background-image: url(' + item.node.display_url + ')"></div>';
+                })
+                $imgBox.innerHTML = img_html;
+                popHander();
+                if(val.length !== 0) $bar.classList.add('seachOk');
+                if(!pageInfo.has_next_page) $more.classList.add('opan')
             })
-
             // loading資料變動
-            BindValue(Loading, 'isOpem', function(bool){
-                
+            BindValue(Loading,'isOpen',function(bool){
+                document.getElementsByClassName("loading")[0].className = bool ? 'loading open' : 'loading';
             })
-
-
+            $pop.addEventListener('click',function(){
+                this.classList.remove('open');
+            });
         }
     </script>
-
 </body>
 </html>

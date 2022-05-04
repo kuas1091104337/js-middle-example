@@ -10,30 +10,105 @@
 </head>
 <body>
     <!-- https://www.mocky.io/ -->
-
     <div id="app">
-        
         <img id="logo" src="./images/logo2.png" alt="">
-        
         <select id="city" name="city">
             <!-- <option value=""></option> -->
         </select>
-        
         <select id="area" name="area">
             <!-- <option value=""></option> -->
         </select>
-        
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
         // 鄉鎮資料 "http://www.mocky.io/v2/5cc3f5723400005d00765480"
-
         window.onload = function(){
+            // s-2
+            var twzipData,
+                $city = document.getElementById('city'),
+                data = {data_area:''};
+            axios.get('http://www.mocky.io/v2/5cc3f5723400005d00765480')
+            .then(function(res){
+                var cityHtml = [];
+                twzipData = res.data.twzip.city;
+                // cityRender(twzipData);
+                twzipData.forEach((el) => {
+                    cityHtml += '<option value="' + el.name + '">' + el.name + '</option>';
+                });
+                $city.innerHTML = cityHtml;
+                data.data_area = $city.value;
+                // changeData();
+                $city.addEventListener('change',function(){
+                    data.data_area = this.value;
+                });
+            }).catch(function(error){
+                console.log(error);
+            });
+            function bindVal(obj,key,callback){
+              var val = obj[key];
+              Object.defineProperty(obj,key,{
+                get:function(){ return val; },
+                set:function(value){
+                  val = value;
+                  callback(val);
+                }
+              });
+            }
+            bindVal(data,'data_area',function(data){
+                var areaHtml = [],
+                    areaObj = twzipData.filter((el) => el.name === data);
+                areaObj[0].area.forEach((el) => {
+                    areaHtml += '<option value="' + el.name + '">' + el.name + '</option>';
+                })
+                document.getElementById('area').innerHTML = areaHtml;
+            });
+            // function cityRender(city){
+            //     city.forEach((el) => {
+            //         cityHtml += '<option value="' + el.name + '">' + el.name + '</option>';
+            //     });
+            //     $city.innerHTML = cityHtml;
+            //     data.data_area = $city.value
+            // }
+            // function changeData(){
+            //     $city.addEventListener('change',function(){
+            //         data.data_area = this.value;
+            //     });
+            // }
 
-
-            
-
+            // s-1
+            // var twzipData, seltecIndex,
+            //     cityHtml = [], areaHtml = [],
+            //     $city = document.getElementById('city'),
+            //     $area = document.getElementById('area');
+            // axios.get('http://www.mocky.io/v2/5cc3f5723400005d00765480')
+            // .then(function(res){
+            //     twzipData = res.data.twzip.city;
+            //     cityRender(twzipData);
+            //     changeData();
+            // }).catch(function(error){
+            //     console.log(error);
+            // });
+            // function cityRender(city){
+            //     city.forEach((el) => {
+            //         cityHtml += '<option value="' + el.name + '">' + el.name + '</option>';
+            //     });
+            //     $city.innerHTML = cityHtml;
+            //     areaRender($city.value);
+            // }
+            // function areaRender(val){
+            //     var areaObj = twzipData.filter((el) => el.name === val)
+            //     areaObj[0].area.forEach((el) => {
+            //         areaHtml += '<option value="' + el.name + '">' + el.name + '</option>';
+            //     })
+            //     $area.innerHTML = areaHtml;
+            //     areaHtml = [];
+            // }
+            // function changeData(){
+            //     $city.addEventListener('change',function(){
+            //         areaRender(this.value)
+            //     });
+            //     // $city.addEventListener('change',() => areaRender($city.value));
+            // }
         }
 
     </script>

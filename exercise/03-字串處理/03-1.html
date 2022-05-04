@@ -13,17 +13,18 @@
         <input id="searchBar" type="text">
         <button id="submit">送出</button>
     </div>
-
-
     <script>
-        
-        var searchBar = document.getElementById("searchBar")
-        var submit = document.getElementById("submit")
-        
+        // var searchBar = document.getElementById("searchBar")
+        // var submit = document.getElementById("submit")
+        // submit.addEventListener("click", function(){ })
+        document.getElementById('submit').addEventListener('click',inputHandler);
+        function inputHandler(){
+            var inputValue = document.getElementById('searchBar').value.trim();
+            inputValue === 'amos' ? console.log('amos') : console.log(123);;
+        }
+        document.getElementById("submit").classList.add('oneClass','twoClass');
+        //增加className，如className已存在，則不新增
 
-        submit.addEventListener("click", function(){
-            
-        })
 
 
     </script>

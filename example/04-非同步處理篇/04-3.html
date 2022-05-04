@@ -7,7 +7,7 @@
     <title>什麼是非同步?</title>
 </head>
 <body>
-
+    <button id="userData1">登入</button>
     <script>
         console.log('1');
         console.log('2');
@@ -20,6 +20,10 @@
         console.log('7');
         console.log('8');
         console.log('9');
+        document.getElementById('userData1').addEventListener('click',function(e){
+          console.log(e);
+          console.log(e.offsetX);
+        });
     </script>
     
 </body>

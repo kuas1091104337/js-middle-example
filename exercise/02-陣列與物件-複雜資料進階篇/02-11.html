@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="./css/02-11.css">
 </head>
 <body>
-
-
     <div id="app">
-
         <ul class="tit_select">
             <li></li>
             <li>
@@ -54,24 +51,138 @@
             </ul> -->
         </div>
     </div>
-
-
-
-
     <script src="./js/data.js"></script>
     <script>
-        var newData = data;
-        var itemList = document.getElementsByClassName("itemList")[0];
-        var html = "";
-        for(var i = 0; i < data.length; i++){
-            html += '<ul class="tit2">'
-            html += '<li>'+data[i].name+'</li>'
-            html += '<li>'+data[i].money+'</li>'
-            html += '<li>'+data[i].age+'</li>'
-            html += '<li>'+data[i].sex+'</li>'
-            html += '</ul>'
+        // s-2
+        var $itemList = document.getElementsByClassName("itemList")[0],
+            $user_age = document.getElementById('user_age'),
+            $user_sex = document.getElementById('user_sex'),
+            $user_money = document.getElementById('user_money'),
+            // listHtml = '',
+            userData = {userFilter:''};
+        
+        function bindVal(obj,key,callback){
+          var val = obj[key];
+          Object.defineProperty(obj,key,{
+            get:function(){ return val; },
+            set:function(value){
+              val = value;
+              callback(val);
+            }
+          });
         }
-        itemList.innerHTML = html;
+        bindVal(userData,'userFilter',function(data){
+            var listHtml = '';
+            data.forEach((el,i) => {
+                listHtml += '<ul class="tit2"><li>'+el.name+'</li>';
+                listHtml += '<li>'+el.money+'</li><li>'+el.age+'</li>';
+                listHtml += '<li>'+el.sex+'</li></ul>';
+            });
+            $itemList.innerHTML = listHtml;
+        });
+        function userNumber(val,id){
+            var value = val/1,
+                key = id.substr(id.indexOf('_')+1),
+                newArr = data.filter(el => el[key] > value);
+            userData.userFilter = newArr;
+            // console.log(newArr);
+        }
+        function userText(val,id){
+            if(val === 'no'){
+                userData.userFilter = data;
+            }else{
+                var key = id.substr(id.indexOf('_')+1),
+                    newArr = data.filter(el => el[key] === val);
+                userData.userFilter = newArr;
+            }
+        }
+        function selectChange(){
+            switch(this.id){
+                case 'user_money' :
+                    userNumber(this.value,this.id);
+                    $user_age.value = 0;
+                    $user_sex.value = 'no';
+                    break;
+                case 'user_age' :
+                    userNumber(this.value,this.id);
+                    $user_money.value = 0;
+                    $user_sex.value = 'no';
+                    break;
+                case 'user_sex' :
+                    userText(this.value,this.id);
+                    $user_money.value = 0;
+                    $user_age.value = 0;
+                    break;
+            }
+        }
+        document.querySelectorAll('.tit_select select').forEach((el) => {
+            el.addEventListener('change',selectChange);
+        });
+        userData.userFilter = data;
+
+        // S-1
+        // var $itemList = document.getElementsByClassName("itemList")[0],
+        //     $user_age = document.getElementById('user_age'),
+        //     $user_sex = document.getElementById('user_sex'),
+        //     $user_money = document.getElementById('user_money'),
+        //     listHtml = '';
+        // function domReader(arr){
+        //     arr.forEach((el,i) => {
+        //         listHtml += '<ul class="tit2"><li>'+el.name+'</li>';
+        //         listHtml += '<li>'+el.money+'</li>';
+        //         listHtml += '<li>'+el.age+'</li>';
+        //         listHtml += '<li>'+el.sex+'</li></ul>';
+        //     });
+        //     $itemList.innerHTML = listHtml;
+        //     listHtml = '';
+        // }
+        // function userNumber(val,id){
+        //     var value = val/1,
+        //         key = id.substr(id.indexOf('_')+1),
+        //         // newArr = [];
+        //     // data.forEach((el) => {
+        //     //     if(el[key] > value) newArr.push(el);
+        //     // });
+        //     newArr = data.filter(el => el[key] > value);
+        //     // console.log(newArr);
+        //     domReader(newArr);
+        // }
+        // function userText(val,id){
+        //     if(val === 'no'){
+        //         domReader(data);
+        //     }else{
+        //         var key = id.substr(id.indexOf('_')+1),
+        //         //     newArr = [];
+        //         // data.forEach((el) => {
+        //         //     if(el[key] === val) newArr.push(el);
+        //         // });
+        //         newArr = data.filter(el => el[key] === val);
+        //         domReader(newArr);
+        //     }
+        // }
+        // function selectChange(){
+        //     switch(this.id){
+        //         case 'user_money' :
+        //             userNumber(this.value,this.id);
+        //             $user_age.value = 0;
+        //             $user_sex.value = 'no';
+        //             break;
+        //         case 'user_age' :
+        //             userNumber(this.value,this.id);
+        //             $user_money.value = 0;
+        //             $user_sex.value = 'no';
+        //             break;
+        //         case 'user_sex' :
+        //             userText(this.value,this.id);
+        //             $user_money.value = 0;
+        //             $user_age.value = 0;
+        //             break;
+        //     }
+        // }
+        // document.querySelectorAll('.tit_select select').forEach((el) => {
+        //     el.addEventListener('change',selectChange);
+        // });
+        // domReader(data);
     </script>
 
 </body>

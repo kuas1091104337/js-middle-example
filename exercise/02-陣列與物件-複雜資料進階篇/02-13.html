@@ -16,52 +16,54 @@
             <div class="item">
                 <h3>● 規章一</h3>
                 <p>規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章!</p>
-                <input id="query1" type="checkbox" name="query1">
-                <label for="query1">你願意遵守以上規章?</label></br>
+                <input id="checkbox1" type="checkbox" name="checkbox1">
+                <label for="checkbox1">你願意遵守以上規章?</label></br>
             </div>
-
             <div class="item">
                 <h3>● 規章二</h3>
                 <p>規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章!</p>
-                <input id="query2" type="checkbox" name="query2">
-                <label for="query2">你願意遵守以上規章?</label></br>
+                <input id="checkbox2" type="checkbox" name="checkbox2">
+                <label for="checkbox2">你願意遵守以上規章?</label></br>
             </div>
-
             <div class="item">
                 <h3>● 規章三</h3>
                 <p>規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章規章!</p>
-                <input id="query3" type="checkbox" name="query3">
-                <label for="query3">你願意遵守以上規章?</label></br>
+                <input id="checkbox3" type="checkbox" name="checkbox3">
+                <label for="checkbox3">你願意遵守以上規章?</label></br>
             </div>
-
-            <button id="submit">送出</button>
+            <button id="submit" disabled>送出</button>
         </form>
     </div>
     <script>
-
-        var submit = document.getElementById("submit");
-
-        function checkFn(){
-            
+        var $checkbox1 = document.getElementById('checkbox1'),
+            $checkbox2 = document.getElementById('checkbox2'),
+            $checkbox3 = document.getElementById('checkbox3'),
+            $submit = document.getElementById('submit');
+        function checkFunc(){
+            // 方法1.
+            // return document.getElementsByTagName('input').every((el) => el.checked === true)
+            // 方法2.
+            // return document.querySelectorAll('.item > input').every((el) => el.checked === true)
+            // 方法3.
+            return [$checkbox1,$checkbox2,$checkbox3].every((el) => el.checked === true)
         }
-
-        function changeFn(){
-            
+        function changeFunc(){
+            $submit.disabled = !checkFunc()
         }
-
-
-        document.getElementById('query1').addEventListener("change", changeFn);
-        document.getElementById('query2').addEventListener("change", changeFn);
-        document.getElementById('query3').addEventListener("change", changeFn);
-        changeFn();
-
-
-        submit.addEventListener("click", function(){
+        document.querySelectorAll('.item > input').forEach((el) => {
+            el.addEventListener('change',changeFunc);
+        });
+        changeFunc();
+        $submit.addEventListener('click',function(){
             alert("送出成功")
-        })
-    
-    
-    
+        });
+
+        var aa = document.getElementsByTagName('input')
+        console.log(aa);
+        // HTMLCollection(3) [input#checkbox1, input#checkbox2, input#checkbox3, checkbox1: input#checkbox1, checkbox2: input#checkbox2, checkbox3: input#checkbox3]
+        var bb = document.querySelectorAll('.item > input')
+        console.log(bb);
+        // NodeList(3) [input#checkbox1, input#checkbox2, input#checkbox3]
     </script>
 
 

@@ -9,26 +9,31 @@
     <link rel="stylesheet" href="./css/04-4.css">
 </head>
 <body>
-
     <div id="app">
         <div class="box">
             <form method="GET">
                 <h1>GET</h1>
                 <input type="text" name="username" placeholder="帳號">
                 <input type="text" name="password" placeholder="密碼">
-                <button>登入</button>
+                <button id="userData1">登入</button>
             </form>
         </div>
-
         <div class="box">
             <form method="POST">
                 <h1>POST</h1>
                 <input type="text" name="username" placeholder="帳號">
                 <input type="text" name="password" placeholder="密碼">
-                <button>登入</button>
+                <button id="userData2">登入</button>
             </form>
         </div>
     </div>
-    
+    <script>
+        document.getElementById('userData1').addEventListener('click',function(e){
+          console.log(e);
+        });
+        document.getElementById('userData2').addEventListener('click',function(e){
+          console.log(e);
+        });
+    </script>
 </body>
 </html>

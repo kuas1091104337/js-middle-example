@@ -15,26 +15,25 @@
         <input id="searchBar" type="text">
         <button id="submit">送出</button>
     </div>
-
-
     <script>
         // toLocaleLowerCase 大寫轉小寫
         // toLocaleUpperCase 小寫轉大寫
-        
         var searchBar = document.getElementById("searchBar")
         var submit = document.getElementById("submit")
-        
         submit.addEventListener("click", function(){
             var value = searchBar.value.trim()
             var tlc = value.toLocaleLowerCase();
+            console.log(1);
             if(tlc === ""){
+                console.log(2);
                 alert("欄位不可以空白");
                 return;
-            } 
-            if(tlc === "mike"){
+            }else if(tlc === "mike"){
+                console.log(3);
                 alert("成功")
             }
             console.log(tlc);
+            console.log(4);
         });
 
         

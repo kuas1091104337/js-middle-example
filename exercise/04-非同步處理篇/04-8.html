@@ -17,10 +17,21 @@
         
         // 可以使用 https://cors-anywhere.herokuapp.com/{api url}
         // 但是這只可以拿來測試，不可以真的拿來傳送敏感資料
-
-        var proxy = "https://cors-anywhere.herokuapp.com/";
-        var url = "https://www.vscinemas.com.tw/VsWeb/api/GetLstDicCinema";
         
+        var proxy = 'https://cors-anywhere.herokuapp.com/',
+            url = 'https://www.vscinemas.com.tw/VsWeb/api/GetLstDicCinema';
+        var url2 = "https://www.net-chinese.com.tw/nc/index.php/Ajax/DnTldSearch_Ajax/GetTldMenuListByLang/New_gTLD/Tech_Ecommerce";
+        // 跨網域存取CORS
+        axios.get(proxy + url)
+        .then(function(res){
+          // 2XX系列進來then
+          console.log(res.data);
+        }).catch(function(error){
+          // 不是2XX系列進來catch
+          console.log(2);
+          console.log(error.response.data);
+          console.error(error.response.data.msg);
+        });
         
     </script>
 </body>

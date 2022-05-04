@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/02-13.css">
 </head>
 <body>
-    
     <div id="app">      
         <h1>制度規章</h1> 
         <form>
@@ -38,9 +37,7 @@
         </form>
     </div>
     <script>
-
         var submit = document.getElementById("submit");
-
         function checkFn(){
             var checkboxArr = [
                 document.getElementById('query1'),
@@ -52,31 +49,22 @@
             })
             return ans;
         }
-
         function changeFn(){
             var isChecked = checkFn();
             submit.disabled = !isChecked;
-
             // if(isChecked){
             //     submit.disabled = false;
             // }else{
             //     submit.disabled = true;
             // }
         }
-
-
         document.getElementById('query1').addEventListener("change", changeFn);
         document.getElementById('query2').addEventListener("change", changeFn);
         document.getElementById('query3').addEventListener("change", changeFn);
         changeFn();
-
-
         submit.addEventListener("click", function(){
             alert("送出成功")
         })
-    
-    
-    
     </script>
 
 

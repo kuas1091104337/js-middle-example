@@ -7,14 +7,59 @@
     <title>非同步工具 axios</title>
 </head>
 <body>
+    <ul class="list">
+        <!-- <li class="item"></li> -->
+        
+       
+        
+    </ul>
     <!-- https://github.com/axios/axios -->
     <!-- https://www.mocky.io/ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
-        
         // GET ./api/data.json
         // GET http://www.mocky.io/v2/5ce0c2e8330000b937608c61
         // POST http://www.mocky.io/v2/5cc3f1c43400007800765473 { userid: "123456789" }
+        var webData = '',
+            apiData_1 = './api/data.json',
+            apiData_2 = 'http://www.mocky.io/v2/5ce0c2e8330000b937608c61',
+            apiData_3 = 'http://www.mocky.io/v2/5cc3f1c43400007800765473';
+            apiData_4 = 'https://run.mocky.io/v3/304f489d-2eae-4a53-a7be-cf68748ba517';
+        // get讀取資料
+        // axios.get(apiData_2).then(function(response){
+        //     // console.log(response);
+        //     // console.log(response.data);
+        //     console.log('請求成功');
+        //     response.data.item.forEach((el,i)=>{
+        //         webData += '<li class="item item'+i+'">OOXX-'+(i+1)
+        //         webData += '<p class="name">'+el.name+'</p>'
+        //         webData += '<span class="txt">'+el.age+'</span>'
+        //         webData += '<span class="txt">'+el.sex+'</span></li>'
+        //     });
+        // }).catch(function(error){
+        //     webData = '請求失敗';
+        //     console.log('請求失敗');
+        // }).then(function(){
+        //     list();
+        //     console.log('不論成功或失敗最後都會執行then');
+        // });
+        var obj = {
+            userName: 'mike',
+            password: '123456789'
+        }
+        var fobj = new FormData();
+        fobj.append('userName','mike');
+        fobj.append('password','123456789');
+        // post把資料傳出去
+        axios.post(apiData_4,fobj)
+        .then(function(response){
+            console.log(response);
+        }).catch(function(error){
+            console.log(error);
+        });
+        function list(){
+            document.getElementsByClassName('list')[0].innerHTML = webData;
+        }
         
 
     </script>

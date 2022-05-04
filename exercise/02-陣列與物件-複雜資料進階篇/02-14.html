@@ -20,28 +20,20 @@
         </div>
     </div>
     <script>
-        var arr = [
-            {
-                name: "遊戲",
-                sex: "boy"
-            },
-            {
-                name: "幸子",
-                sex: "girl"
-            },
-            {
-                name: "城之內",
-                sex: "boy"
-            },
-            {
-                name: "海馬",
-                sex: "boy"
-            },
-            {
-                name: "本田",
-                sex: "boy"
-            }
-        ]
+        // var itemBoxData, // undefined
+        var itemBoxData ='',
+            arr = [
+                { name: "遊戲", sex: "boy" },
+                { name: "幸子", sex: "girl" },
+                { name: "城之內", sex: "boy" },
+                { name: "海馬", sex: "boy" },
+                { name: "本田", sex: "boy" }
+            ];
+            console.log(itemBoxData);
+        arr.map((el) => {
+            return el.name + ' (' + el.sex +')';
+        }).forEach((arr) => itemBoxData += '<li class="list">'+arr+'</li>')
+        document.getElementById('itemBox').innerHTML = itemBoxData;
     
     </script>
 </body>

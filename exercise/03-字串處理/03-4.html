@@ -7,16 +7,17 @@
     <title>字串反轉</title>
 </head>
 <body>
-    
+    <input type="text" id="IPvalue">
+    <p id="textValue"></p>
     <script>
-        
-        function reverse(txt){
-            
-
+        // function reverse(txt){ }
+        // var text = reverse("HelloMike!");
+        var $IPvalue = document.getElementById('IPvalue');
+        $IPvalue.addEventListener('keyup',textHandler);
+        function textHandler(){
+            var outputText = $IPvalue.value.trim().split('').reverse().join('');
+            document.getElementById('textValue').innerText = outputText;
         }
-
-        var text = reverse("HelloMike!");
-        
     </script>
 
 

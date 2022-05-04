@@ -9,25 +9,32 @@
     <link rel="stylesheet" href="./css/03-1.css">
 </head>
 <body>
-    
     <div>  
         <h1>請輸入老師的英文名字</h1>
         <input id="searchBar" type="text">
         <button id="submit">送出</button>
     </div>
-
-
     <script>
+        // document.getElementById('searchBar').
+        document.getElementById('submit').addEventListener('click',submitHandler);
+        function submitHandler(){
+            var value = document.getElementById('searchBar').value.trim().toLocaleLowerCase();
+            switch(value) {
+                case '' :
+                    console.log('欄位不可以空白');
+                    break;
+                case 'amos' :
+                    console.log('ok');
+                    break;
+                default :
+                    console.log(value);
+            }
+        }
         // toLocaleLowerCase 大寫轉小寫
         // toLocaleUpperCase 小寫轉大寫
-        
-        var searchBar = document.getElementById("searchBar")
-        var submit = document.getElementById("submit")
-        
-        submit.addEventListener("click", function(){
-            
-            
-        });
+        // var searchBar = document.getElementById("searchBar")
+        // var submit = document.getElementById("submit")
+        // submit.addEventListener("click", function(){ });
 
         
     </script>
