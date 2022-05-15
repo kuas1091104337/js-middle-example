@@ -11,13 +11,15 @@
     <!-- https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
-        
         // http://www.mocky.io/v2/5cc40dbe34000077007654af
-
-
-        
+        axios.get("http://www.mocky.io/v2/5cc40dbe34000077007654af")
+        .then(function(res){
+            console.log("拿到資料:", res.data);
+        }).catch(function (error){
+            alert(error.response.data.msg);
+            console.log(error.response.data);
+            console.error("發生錯誤 狀態碼不是200:", error.response.data.msg);
+        }
     </script>
-    
-    
 </body>
 </html>

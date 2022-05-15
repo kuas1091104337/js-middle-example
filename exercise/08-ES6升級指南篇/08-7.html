@@ -7,26 +7,19 @@
     <title>function 預設值</title>
 </head>
 <body>
-
-
     <script>
-        
         // ES5
         function Add(a, b){
             return a + b
         }
         console.log(Add());     // NaN
         console.log(Add(2, 3)); // 5
-        
-
         // ES6
-        
-        
-    
+        function Add2(a=1, b=2){
+            return a + b
+        }
+        console.log(Add2());     // 3
+        console.log(Add2(5, 3)); // 8
     </script>
-
-
-
-    
 </body>
 </html>

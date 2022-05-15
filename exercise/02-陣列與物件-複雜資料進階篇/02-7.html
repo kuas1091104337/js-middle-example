@@ -9,11 +9,19 @@
     <link rel="stylesheet" href="./css/02-5.css">
 </head>
 <body>
-
     <button id="btn">點我拿資料</button>
-
     <script>
-        
+        document.getElementById("btn").addEventListener("click", function(e){
+            console.log(e);
+        });
+        function Test(){
+            return 1 + 1;
+        }
+        console.log(Test());
+        function propsAdd(a, b){
+            return a + b;
+        }
+        console.log(propsAdd(1, 1));
     </script>
     
 </body>

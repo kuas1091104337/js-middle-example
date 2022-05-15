@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/02-13.css">
 </head>
 <body>
-    
     <div id="app">      
         <h1>制度規章</h1> 
         <form>
@@ -45,24 +44,23 @@
             // 方法2.
             // return document.querySelectorAll('.item > input').every((el) => el.checked === true)
             // 方法3.
-            return [$checkbox1,$checkbox2,$checkbox3].every((el) => el.checked === true)
+            return [$checkbox1,$checkbox2,$checkbox3].every(el => el.checked === true)
         }
         function changeFunc(){
             $submit.disabled = !checkFunc()
         }
-        document.querySelectorAll('.item > input').forEach((el) => {
+        document.querySelectorAll('.item > input').forEach(el => {
             el.addEventListener('change',changeFunc);
         });
         changeFunc();
         $submit.addEventListener('click',function(){
             alert("送出成功")
         });
-
-        var aa = document.getElementsByTagName('input')
-        console.log(aa);
+        // var aa = document.getElementsByTagName('input')
+        // console.log(aa);
         // HTMLCollection(3) [input#checkbox1, input#checkbox2, input#checkbox3, checkbox1: input#checkbox1, checkbox2: input#checkbox2, checkbox3: input#checkbox3]
-        var bb = document.querySelectorAll('.item > input')
-        console.log(bb);
+        // var bb = document.querySelectorAll('.item > input')
+        // console.log(bb);
         // NodeList(3) [input#checkbox1, input#checkbox2, input#checkbox3]
     </script>
 

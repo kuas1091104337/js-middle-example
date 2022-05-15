@@ -7,24 +7,16 @@
     <title>修飾符</title>
 </head>
 <body>
-
-    <ul id="app">
-
-    </ul>
-
+    <ul id="app"> </ul>
     <script>
-                
         var str = 'ECMAScript Javscript EggCat E123456789t Eabcdefg ecmascripT Ecmascript'
         var reg = /E([a-zA-Z]+)t/g;
         var textArr = str.match(reg);
-
         var html = "";
         textArr.forEach(function(item){
             html += '<li>' + item + '</li>';
         })
-
         document.getElementById("app").innerHTML = html;
-        
     </script>
     
 </body>

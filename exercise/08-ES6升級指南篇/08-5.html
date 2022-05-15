@@ -10,13 +10,10 @@
     <h1 id="title"></h1>
     <div class="list"></div>
     <div class="list2"></div>
-
     <script>
         const name = "mike", mail = "1208966@gmail.com";
         // document.getElementById('title').innerHTML = '姓名：'+name+' / 信箱：'+mail;
         document.getElementById('title').innerHTML = `姓名：${name} / 信箱：${mail}`;
-        
-        
         // ES5
         var html = "";
         html += '<ul>';
@@ -24,7 +21,6 @@
         html += '<li>'+mail+'</li>';
         html += '<ul>';
         document.getElementsByClassName('list')[0].innerHTML = html;
-                
         // ES6
         const html2 = `
             <ul>
@@ -33,10 +29,6 @@
             </ul>
         `
         document.getElementsByClassName('list2')[0].innerHTML = html2;
-
     </script>
-
-
-
 </body>
 </html>

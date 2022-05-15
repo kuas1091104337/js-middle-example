@@ -17,10 +17,8 @@
         let $age = data.age
         let $time = data.time
         console.log($name, $age, $time);
-
         let {name, age, time} = data;
         console.log(name, age, time);
-
         function dataSet(obj){
             let {name, age, time} = obj;
             return {
@@ -31,9 +29,6 @@
         }
         let objs = dataSet(data);
         console.log(objs);
-
-        
-        
     </script>
 </body>
 </html>

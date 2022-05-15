@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/02-5.css">
 </head>
 <body>
-
     <div class="mid">
         <input class="seach" type="text" value="線上課程">
         <p>最近熱門搜尋:  
@@ -80,12 +79,12 @@
         var seach = document.getElementsByClassName('seach')[0];
         var seach_list = document.getElementsByClassName('seach_list')[0];
         var tag = document.getElementsByClassName('tag');
-        var seachArr = seachData['線上課程'];
+        var seachArr = seachData['線上課程'];// 初始化執行
         var html = '';
+        //點擊標籤
         for(var s = 0; s < tag.length; s++){
             tag[s].addEventListener('click', seachTag);
         }
-
         function DOMrender(){
             html = '';
             seach_list.innerHTML = '';
@@ -98,11 +97,13 @@
             }
             seach_list.innerHTML = html;
         }
+        // 更改點到的資料
         function seachTag(){
             seachArr = seachData[this.innerText];
             seach.value = this.innerText;
             DOMrender();
         }
+        //鍵盤事件
         seach.addEventListener('keyup', function(){
             seachArr = seachData[this.value];
             if(seachArr === undefined){
@@ -112,7 +113,6 @@
             DOMrender();
         })
         DOMrender();
-        
         function bindVal(obj,key,callback){
           var val = obj[key];
           Object.defineProperty(obj,key,{

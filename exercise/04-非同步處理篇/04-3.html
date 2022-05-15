@@ -7,10 +7,22 @@
     <title>什麼是非同步?</title>
 </head>
 <body>
-
     <script>
-        
+        console.log('1');
+        console.log('2');
+        console.log('3');
+        console.log('4');
+        setTimeout(function(){
+            console.log('5');
+        },2000)
+        console.log('6');
+        console.log('7');
+        console.log('8');
+        console.log('9');
+        document.getElementById('userData1').addEventListener('click',function(e){
+          console.log(e);
+          console.log(e.offsetX);
+        });
     </script>
-    
 </body>
 </html>

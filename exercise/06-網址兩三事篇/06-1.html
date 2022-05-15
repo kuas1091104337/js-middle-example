@@ -34,10 +34,13 @@
     <button id="btn2">點擊2</button>
     <script>
         document.getElementById('btn').addEventListener('click',function(){
+            // 本地重整
             window.location.reload();
         });
         document.getElementById('btn2').addEventListener('click',function(){
+            // 轉址
             // window.location.href = './open.html';
+            // 轉址 (但是不會有上一頁)
             window.location.replace('./open.html');
         });
     </script>
