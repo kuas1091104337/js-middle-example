@@ -32,14 +32,36 @@
     </style>
 </head>
 <body>
-
-    
     <button id="btn">測試點擊</button>
-
     <script src="./data.js"></script>
     <script>
-        
-        
+        document.getElementById('btn').addEventListener('click',function(e){
+            console.log(this, e.target);
+            // console.log(e.target);
+            // console.log(e);
+            // console.log(e.target.id);
+        });
+        document.getElementById('btn').addEventListener('click',e => {
+            console.log(this, e.target);
+            // console.log(e);
+            console.log(e.target);
+            console.log(e.target.id);
+            // console.log(e.target.innerText);
+            // console.log(e.target.textContent);
+            // console.log(e.target.className);
+            // console.log(e.target.style);
+            // console.log(e.target.cssText);
+            // console.log(e.target.getAttribute);
+        });
+        function add(a,b){
+            if(a === undefined) a = 2;
+            if(b === undefined) b = 3;
+            return a+b;
+        }
+        console.log(add(1,2));
+        const reduce = (a=3,b=2) => a-b;
+        console.log(reduce(1,2));
+        console.log(reduce());
 
     </script>
 

@@ -7,15 +7,18 @@
     <title>模糊匹配</title>
 </head>
 <body>
-
     <ul id="app">
-
-    </ul>
-
-    <script>
-
-        var str = 'ECMAScript Javscript EggCat E123456789t Eabcdefg ecmascripT Ecmascript'
         
+    </ul>
+    <script>
+        var str = 'ECMAScript Javscript EggCat E123456789t Eabcdefg ecmascripT Ecmascript',
+            // reg = /E(\w+)t/g,
+            reg = /E([a-zA-Z0-9]+)t/gi,
+            texArr = str.match(reg),
+            appHtml = '';
+        console.log(texArr);
+        texArr.forEach((el) => appHtml += '<li>'+el+'</li>')
+        document.getElementById('app').innerHTML = appHtml;
 
     </script>
 </body>

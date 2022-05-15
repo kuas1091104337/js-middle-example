@@ -33,13 +33,14 @@
 </head>
 <body>
     <button id="btn">點擊轉址</button>
-    
+    <!-- https://github.com/Mikhus/domurl -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsurl/2.2.0/url.js"></script>
     <script>
-        
-        
+        // ?name=mike&age=12
+        // ?from=mike
         document.getElementById('btn').addEventListener('click', function(){
-            
-
+            // window.location.href = './open.html' + window.location.search
+            window.location.href = './search.html' + window.location.search
         });
         
 

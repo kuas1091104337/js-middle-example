@@ -40,9 +40,6 @@ html, body {
 .seachOk ~ .imgBox{display: flex;}
 .imgBox {
   width: 90%;
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* align-items: stretch; */
   display: none;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -68,33 +65,23 @@ html, body {
   cursor: pointer;
   margin: 0 auto 50px;
 }
-.pop.open {display: flex;}
-.pop {
+.pop, .loading{
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
   display: none;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 399;
 }
+.pop.open, .loading.open{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pop { background-color: rgba(0,0,0,0.4); }
 .pop > img { max-width: 400px; }
-.loading.open{ display: flex; }
-.loading {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 399;
-}
+.loading { background-color: rgba(0,0,0,0.8); }
 .lds-ellipsis {
   width: 64px;
   height: 64px;

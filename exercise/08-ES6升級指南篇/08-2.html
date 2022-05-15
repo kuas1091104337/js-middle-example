@@ -7,16 +7,30 @@
     <title>解構賦值</title>
 </head>
 <body>
-    
     <script>
-        
         let data = {
             name: "mike",
             age: 12,
             time: "2019/04/01"
         }
-        
+        let $name = data.name
+        let $age = data.age
+        let $time = data.time
+        console.log($name, $age, $time);
 
+        let {name, age, time} = data;
+        console.log(name, age, time);
+
+        function dataSet(obj){
+            let {name, age, time} = obj;
+            return {
+                name: name+'123',
+                age,
+                time
+            }
+        }
+        let objs = dataSet(data);
+        console.log(objs);
 
         
         

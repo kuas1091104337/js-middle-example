@@ -15,22 +15,16 @@
             return  regexStart.test(item);
         })
         console.log("Start:", strfilter);
-
-
         var regexEnd = /er$/;
         var endfilter = strArr.filter(function(item){
             return  regexEnd.test(item);
         })
         console.log("End:", endfilter);
-        
-
         var regexMid = /^a.*e$/;
         var midfilter = strArr.filter(function(item){
             return  regexMid.test(item);
         })
         console.log("Mid:", midfilter);
-    
-    
     </script>
 
 

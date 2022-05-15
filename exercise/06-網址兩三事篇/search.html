@@ -25,17 +25,15 @@
     </style>
 </head>
 <body>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsurl/2.2.0/url.js"></script>
     <script>
-        
         var search = new Url(window.location.search);
-        
+        console.log(search);
+        console.log(search.query.from);
         if(search.query.from !== undefined){
             console.log("從"+search.query.from+"來的");
             alert("從"+search.query.from+"來的");
         }
-        
     </script>
 </body>
 </html>

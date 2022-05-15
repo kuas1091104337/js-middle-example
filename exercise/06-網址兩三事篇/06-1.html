@@ -21,26 +21,25 @@
         font-family: "Microsoft JhengHei","Heiti TC","sans-serif";
     }
     button{
-        display: block;
+        font-size: 30px;
         width: 200px;
         height: 60px;
-        font-size: 30px;
+        display: block;
+        margin: 50px;
     }
     </style>
 </head>
 <body>
-
     <button id="btn">點擊</button>
+    <button id="btn2">點擊2</button>
     <script>
-        
-        
-        document.getElementById('btn').addEventListener('click', function(){
-
-            
-
+        document.getElementById('btn').addEventListener('click',function(){
+            window.location.reload();
         });
-    
+        document.getElementById('btn2').addEventListener('click',function(){
+            // window.location.href = './open.html';
+            window.location.replace('./open.html');
+        });
     </script>
-
 </body>
 </html>

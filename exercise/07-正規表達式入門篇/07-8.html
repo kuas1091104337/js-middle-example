@@ -7,22 +7,31 @@
     <title>方括號與大括號</title>
 </head>
 <body>
-    
     <ul id="app">
-
-
+        <!-- <li></li> -->
     </ul>
-
     <script>
-        var Datestr = [
-            "2006/02/03",
-            "test/07/sd",
-            "2016/05/10",
-            "1998/03/07",
-            "12345/23/45678",
-            "1234/23/45678",
-            "12345/23/45",
-        ];
+        var dateStr = [
+                "2006/02/03",
+                "test/07/sd",
+                "2016/05/10",
+                "1998/03/07",
+                "12345/23/45678",
+                "1234/23/45678",
+                "12345/23/45",
+            ],
+            reg = /^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/,
+            renderHtml = '';
+        dateStr.filter(el => 
+            reg.test(el)
+        ).map(el => 
+            el.replace(/\//g,'-')
+        ).forEach(
+            el => renderHtml += '<li>'+el+'</li>'
+        );
+        document.getElementById('app').innerHTML = renderHtml;
+
+        
         
         
 

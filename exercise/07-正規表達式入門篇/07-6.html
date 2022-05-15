@@ -7,9 +7,17 @@
     <title>頭尾^$</title>
 </head>
 <body>
-    
     <script>
-        var strArr = ["airline", "banner", "apple", "cat", "dog", "applepay", "linerair", "airplane", "wayair", "habit"];
+        var strArr = ["airline", "banner", "apple", "cat", "dog", "applepay", "linerair", "airplane", "wayair", "habit"],
+            regexStart = /^a/, regexEnd = /air$/, regexMid = /^a.*e$/,
+            startfilter, endfilter, midfilter;
+        startfilter = strArr.filter((el) => regexStart.test(el))
+        console.log('start-a : '+startfilter);
+        endfilter = strArr.filter((el) => regexEnd.test(el))
+        console.log('end-air : '+endfilter);
+        midfilter = strArr.filter((el) => regexMid.test(el))
+        console.log('mid-a e : '+midfilter);
+
     </script>
 
 

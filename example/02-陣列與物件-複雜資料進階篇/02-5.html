@@ -111,15 +111,18 @@
       }
 
       // 更改點到的資料
-      function seachTagChange() {
-        seachObj = seachData[this.innerText];
-        seach.value = this.innerText;
+      function seachTagChange(e) {
+        // seachObj = seachData[this.innerText];
+        // seach.value = this.innerText;
+        seachObj = seachData[e.target.innerText];
+        seach.value = e.target.innerText;
         DOMrender();
       }
 
       //鍵盤事件
-      seach.addEventListener("keyup", function () {
-        seachObj = seachData[this.value];
+      seach.addEventListener("keyup", function (e) {
+        // seachObj = seachData[this.value];
+        seachObj = seachData[e.target.value];
         if (seachObj === undefined) {
           seachObj = [];
         }

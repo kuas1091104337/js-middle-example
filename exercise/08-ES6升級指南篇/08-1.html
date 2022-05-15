@@ -9,7 +9,23 @@
 <body>
 
     <script>
-        
+        console.log(a);
+        // console.log(b);
+        var a;
+        let b;
+        if(true) a = 1;
+        if(true) b = 2;
+        for (var i = 0, max = 5; i < max; i++) {
+            setTimeout(() => console.log(i), 1000);
+        }
+        for (let i = 0, max = 5; i < max; i++) {
+            setTimeout(() => console.log(i), 1000);
+        }
+        const num = 1, arr = [], obj = {};
+        arr[0] = 1
+        obj.name = 'mike'
+        obj = []
+        num = 2
     </script>
     
 </body>
