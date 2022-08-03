@@ -69,6 +69,7 @@
                 if(pageInfo.has_next_page) baseUrl += '&max_id='+pageInfo.end_cursor;
                 axios.get(baseUrl).then(function(res){
                     // edges存照片
+                    console.log(res);
                     edges = res.data.graphql.hashtag.edge_hashtag_to_media.edges;
                     pageInfo = res.data.graphql.hashtag.edge_hashtag_to_media.page_info;
                     photoTag.pages = edges;
