@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>RWD_WEB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<!-- <link href="css/core.css" rel="stylesheet" type="text/css"> -->
+</head>
+<body>
+ <header>
+  <h1>JavaScript取出陣列重複/不重複值的方法</h1>
+ </header>
+ <article>
+  <p class="result1"></p>
+  <p class="repeat1"></p>
+  <p class="result2"></p>
+  <p class="repeat2"></p>
+  <p class="result3"></p>
+  <p class="repeat3"></p>
+  <p class="result4"></p>
+  <p class="repeat4"></p>
+ </article>
+ <footer></footer>
+ <script type="text/javascript">
+  const arry = [1, 2, 'a', 3, 1, 'b', 'a'],
+        // s-1
+        result1 = arry.filter((el,i,arr) => arr.indexOf(el) === i),
+        repeat1 = arry.filter((el,i,arr) => arr.indexOf(el) !== i),
+        // s-2
+        result2 = [...new Set(arry)],
+        // s-3
+        result3 = new Set(),
+        repeat3 = new Set(),
+        // s-4
+        resultObj = {};
+  // s-1
+  console.log(result1);
+  console.log(repeat1);
+  document.querySelector('.result1').innerText = result1;
+  // s-2
+  arry.forEach(el => resultObj[el] = resultObj[el] ? resultObj[el]+1 : 1);
+  console.log(result2);
+  document.querySelector('.result2').innerText = result2;
+  // s-3
+  arry.forEach(el => result3.has(el) ? repeat3.add(el) : result3.add(el));
+  console.log(result3);
+  console.log(repeat3);
+  document.querySelector('.result3').innerText = result3;
+  // s-4
+  console.log(Object.keys(resultObj));
+  console.log(resultObj);
+ </script>
+</body>
+</html>
