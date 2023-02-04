@@ -1,4 +1,3 @@
 module.exports = {
-  name:'mike',
-  age:18
+  name:'mike'
 };
